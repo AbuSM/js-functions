@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "build": "babel date.js"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.8",
+    "@babel/preset-flow": "^7.14.5"
+  }
+}
