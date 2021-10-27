@@ -54,3 +54,45 @@ function sumArithmetic(n) {
 }
 console.log(sumArithmetic(1))
 
+/**
+ * Function to test lexical environment
+ * @returns {a}
+ */
+function lexical() {
+    let name = "John";
+    function a() {
+        console.log("Name: ", name);
+    }
+    name = "Pete";
+    return a;
+}
+const a = lexical()
+a();
+
+/**
+ * Functions which work with closures
+ */
+
+function inBetween(a, b) {
+    return item => item >= a && item <= b
+}
+function inArray(arr) {
+
+    return item => arr.includes(item)
+}
+
+const arr = [1, 2, 3, 4, 5, 6, 7];
+console.log(arr.filter(inBetween(3, 6)))
+console.log(arr.filter(inArray([4, 1, 5, 11])))
+
+function byField(name) {
+    return (a, b) => a[name] > b[name] ? 1: -1
+}
+
+let users = [
+    { name: "John", age: 20, surname: "Johnson" },
+    { name: "Pete", age: 18, surname: "Peterson" },
+    { name: "Ann", age: 19, surname: "Hathaway" }
+];
+console.log(users.sort(byField('name')));
+console.log(users.sort(byField('age')));
