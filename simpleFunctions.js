@@ -96,3 +96,57 @@ let users = [
 ];
 console.log(users.sort(byField('name')));
 console.log(users.sort(byField('age')));
+
+/**
+ * 
+ * @param a
+ * @returns {any}
+ */
+function sum(a) {
+
+    let currentSum = a;
+
+    function f(b) {
+        currentSum += b;
+        return f;
+    }
+
+    f.toString = function() {
+        return currentSum;
+    };
+
+    return f;
+}
+console.log(sum(1)(2)); // 3
+console.log(sum(0)(1)(2)(3)(4)(5)); // 15
+
+/**
+ * Functions that work with setInterval and setTimeout
+ * @param from
+ * @param to
+ */
+
+function printNumbersInterval(from, to) {
+    let currentValue = from;
+    const intervalId = setInterval(() => {
+        if (currentValue === to) {
+            clearInterval(intervalId)
+        }
+        console.log(currentValue)
+        currentValue++;
+    }, 1000)
+}
+
+function printNumbersTimeout(from, to) {
+    let currentValue = from;
+    const timeoutId = setTimeout(function handler() {
+        console.log(currentValue)
+        if (currentValue === to)  {
+            clearTimeout(timeoutId);
+            return;
+        }
+        currentValue++;
+        setTimeout(handler, 1000);
+    }, 1000)
+}
+printNumbersTimeout(5, 11)
